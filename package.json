@@ -1,0 +1,29 @@
+{
+  "name": "canvas-tracker",
+  "version": "1.0.0",
+  "description": "A tool to interact with Canvas API for tracking assignments and courses",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "web": "node server.js",
+    "web:dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.18.2",
+    "express-session": "^1.18.2",
+    "googleapis": "^153.0.0"
+  },
+  "keywords": [
+    "canvas",
+    "api",
+    "education",
+    "assignments"
+  ],
+  "author": "",
+  "license": "MIT"
+}
