@@ -1,235 +1,181 @@
-# Akorn
+# 🎓 Canvas Tracker - AI-Powered Academic Assistant
 
-A comprehensive academic management platform that integrates with Learning Management Systems (Canvas, Blackboard, D2L) to help students track assignments, sync with Google Calendar, and manage their academic journey.
+A modern web application that integrates with Canvas LMS to provide students with assignment tracking, calendar integration, and an AI-powered chat assistant featuring school-specific mascots.
 
-## Features
+## ✨ Features
 
-- 🔐 **Secure LMS Integration** - Connect to Canvas, Blackboard, or D2L
-- 🏫 Multi-institution support (OSU, UMich, UCLA, UC Berkeley, etc.)
-- 📚 Fetch all courses for the authenticated user
-- 📝 Get assignments for specific courses with submission status
-- 👤 Retrieve user profile information
-- 🎯 Get detailed assignment information
-- 🤖 **AI-Powered Recommendations** - Smart prioritization and time estimates
-- 📊 **Assignment Organization** - Categorized by status (Missing, In Progress, Completed)
-- 🌐 Beautiful web dashboard interface
-- 📱 Responsive design for mobile and desktop
-- 🔄 Real-time data refresh capabilities
-- 🚪 Secure session management
-- 📅 **Google Calendar Integration** - Real OAuth sync with your calendar
-- 📋 **Applications Tracking** - Manage academic applications and deadlines
-- 📖 **Syllabus Analysis** - Upload and analyze course syllabi
+### 📚 **Canvas LMS Integration**
+- **Assignment Tracking**: View all your Canvas assignments in one place
+- **Course Management**: Organize and track your courses
+- **Submission Status**: Monitor assignment submission status
+- **Real-time Updates**: Stay updated with your academic progress
 
-## Setup
+### 🤖 **AI Chat Assistant**
+- **School Mascot AI**: Personalized AI assistant based on your institution
+- **Dynamic Detection**: Automatically detects your school (Ohio State, Michigan, etc.)
+- **Academic Support**: Get help with courses, assignments, and study tips
+- **School Traditions**: Learn about campus life and traditions
+
+### 📅 **Google Calendar Integration**
+- **Assignment Sync**: Automatically add Canvas assignments to Google Calendar
+- **OAuth Authentication**: Secure Google Calendar access
+- **Embedded Calendar**: View your calendar directly in the app
+
+### 🎨 **Modern UI/UX**
+- **Responsive Design**: Works on desktop, tablet, and mobile
+- **Clean Interface**: Intuitive navigation and user experience
+- **Performance Optimized**: Smooth scrolling and fast loading
+
+## 🚀 Quick Start
 
 ### Prerequisites
 - Node.js (v14 or higher)
-- npm or yarn
-- Canvas OAuth Application (see setup below)
-
-### LMS Integration Setup
-
-#### Canvas Access Token Setup
-
-To connect to Canvas, you need to get an access token:
-
-1. **Log into your Canvas instance** (e.g., canvas.osu.edu)
-2. **Go to Settings**: Click your profile picture → Settings
-3. **Scroll to Approved Integrations**
-4. **Click "New Access Token"**
-5. **Enter a purpose** like "Akorn"
-6. **Set expiration** to "Never" or choose a future date
-7. **Click "Generate Token"**
-8. **Copy the token immediately** (you won't see it again!)
-
-#### Google Calendar Integration Setup
-
-For Google Calendar sync, follow the detailed guide in [GOOGLE_CALENDAR_SETUP.md](GOOGLE_CALENDAR_SETUP.md):
-
-1. **Create a Google Cloud Project**
-2. **Enable Google Calendar API**
-3. **Set up OAuth 2.0 credentials**
-4. **Create a `.env` file** with your credentials:
-   ```
-   GOOGLE_CLIENT_ID=your_google_client_id_here
-   GOOGLE_CLIENT_SECRET=your_google_client_secret_here
-   GOOGLE_REDIRECT_URI=http://localhost:2025/api/auth/google/callback
-   SESSION_SECRET=your_random_session_secret_here
-   ```
+- Python 3.8+ (for optional Discord bot)
+- Canvas LMS account
+- Google account (for calendar integration)
 
 ### Installation
 
-1. **Install dependencies:**
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/canvas-tracker.git
+   cd canvas-tracker
+   ```
+
+2. **Install dependencies**
    ```bash
    npm install
    ```
 
-2. **Start the web server:**
+3. **Set up environment variables**
+   ```bash
+   cp env.example .env
+   ```
+   Edit `.env` with your configuration:
+   ```env
+   GOOGLE_CLIENT_ID=your_google_client_id
+   GOOGLE_CLIENT_SECRET=your_google_client_secret
+   GOOGLE_REDIRECT_URI=http://localhost:2025/api/auth/google/callback
+   SESSION_SECRET=your_random_session_secret
+   PORT=2025
+   ```
+
+4. **Start the application**
    ```bash
    npm run web
    ```
 
-3. **Open your browser:**
+5. **Open your browser**
    Navigate to `http://localhost:2025`
 
-4. **Login with your Canvas account:**
-   - Select your institution from the dropdown
-   - Click "Sign in with Canvas"
-   - Complete the OAuth flow on Canvas
-   - Access your dashboard with AI-powered insights
+## 📖 Setup Guides
 
-### Features:
-- **Secure OAuth Authentication** - No manual tokens needed
-- **AI-Powered Recommendations** - Smart assignment prioritization
-- **Assignment Organization** - Categorized by status
-- **Real-time Data Loading** - Always up-to-date information
-- **Course Filtering** - Focus on specific courses
-- **Responsive Design** - Works on all devices
-- **Multi-institution Support** - Works with any Canvas instance
+### Canvas LMS Setup
+1. Log in to your Canvas account
+2. Go to Settings → Developer Keys
+3. Create a new developer key with appropriate permissions
+4. Use the generated token in the application
 
-### Python Version
+### Google Calendar Setup
+See [GOOGLE_CALENDAR_SETUP.md](GOOGLE_CALENDAR_SETUP.md) for detailed instructions.
 
-1. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+### Discord Bot Setup (Optional)
+See [DISCORD_BOT_SETUP.md](DISCORD_BOT_SETUP.md) for Discord bot configuration.
 
-2. **Run the application:**
-   ```bash
-   python3 canvas_api.py
-   ```
+## 🏫 Supported Institutions
 
-3. **Simple example:**
-   ```bash
-   python3 simple_example.py
-   ```
+The AI assistant automatically detects and adapts to your institution:
 
-## Usage
+- **Ohio State University** → Brutus AI 🏈
+- **University of Michigan** → Wolverine AI 🐺
+- **Other Institutions** → Generic AI Assistant 🤖
 
-### Basic Usage
+## 🛠️ Technology Stack
 
-#### Node.js
-Run the main application to see your courses and assignments:
+- **Backend**: Node.js, Express.js
+- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+- **Database**: Session-based (can be extended to MongoDB/PostgreSQL)
+- **APIs**: Canvas LMS API, Google Calendar API
+- **AI**: Custom mascot-based responses
+- **Authentication**: OAuth 2.0, Session management
 
-```bash
-npm start
-```
-
-#### Python
-Run the main application to see your courses and assignments:
-
-```bash
-python3 canvas_api.py
-```
-
-### Programmatic Usage
-
-#### Node.js
-```javascript
-const CanvasAPI = require('./canvas-api');
-
-const canvas = new CanvasAPI();
-
-// Get all courses
-const courses = await canvas.getCourses();
-
-// Get assignments for a specific course
-const assignments = await canvas.getAssignments(courseId);
-
-// Get user profile
-const profile = await canvas.getUserProfile();
-```
-
-#### Python
-```python
-from canvas_api import CanvasAPI
-
-canvas = CanvasAPI()
-
-# Get all courses
-courses = canvas.get_courses()
-
-# Get assignments for a specific course
-assignments = canvas.get_assignments(course_id)
-
-# Get user profile
-profile = canvas.get_user_profile()
-```
-
-### API Methods
-
-#### `getCourses(options)`
-Fetches all courses for the authenticated user.
-
-#### `getCourse(courseId)`
-Gets details for a specific course.
-
-#### `getAssignments(courseId, options)`
-Fetches all assignments for a specific course.
-
-#### `getAssignment(courseId, assignmentId)`
-Gets details for a specific assignment.
-
-#### `getUserProfile()`
-Retrieves the authenticated user's profile information.
-
-## API Endpoints Used
-
-- `GET /api/v1/courses` - List all courses
-- `GET /api/v1/courses/:course_id` - Get course details
-- `GET /api/v1/courses/:course_id/assignments` - List course assignments
-- `GET /api/v1/courses/:course_id/assignments/:assignment_id` - Get assignment details
-- `GET /api/v1/users/self/profile` - Get user profile
-
-## Example Output
+## 📁 Project Structure
 
 ```
-🎓 Canvas API Client
-===================
-
-📋 Fetching user profile...
-👤 User: John Doe (john.doe@university.edu)
-🆔 User ID: 12345
-
-📚 Fetching courses...
-Found 3 courses:
-
-📖 Introduction to Computer Science (ID: 123)
-   Code: CS101
-   State: available
-
-📖 Advanced Mathematics (ID: 124)
-   Code: MATH201
-   State: available
-
-📝 Fetching assignments for: Introduction to Computer Science
-Found 5 assignments:
-
-📋 Programming Assignment 1
-   Due: 2024-01-15T23:59:00Z
-   Points: 100
-   Status: published
+canvas-tracker/
+├── public/                 # Frontend files
+│   ├── dashboard.html     # Main dashboard
+│   ├── profile.html       # User profile page
+│   ├── mascot.html       # AI chat interface
+│   ├── styles.css        # Main stylesheet
+│   └── mascot.js         # AI chat logic
+├── server.js             # Express server
+├── canvas_api.py         # Canvas API utilities
+├── discord_bot_simple.py # Discord bot (optional)
+├── requirements.txt      # Python dependencies
+├── package.json         # Node.js dependencies
+└── README.md           # This file
 ```
 
-## Error Handling
+## 🎯 Usage Examples
 
-The application includes comprehensive error handling for:
-- Network errors
-- Authentication failures
-- Invalid course/assignment IDs
-- API rate limiting
+### AI Chat Assistant
+```
+User: "Tell me about Ohio State football"
+Brutus AI: "🏈 O-H! I-O! Buckeye football is the heart of Ohio State! 
+The Horseshoe is where legends are made. Go Bucks! 🌰"
 
-## Security Notes
+User: "What is ACCTMIS 2200?"
+Brutus AI: "📊 ACCTMIS 2200 is Introduction to Accounting I! 
+It covers financial statements, double-entry bookkeeping, 
+and fundamental accounting principles. Perfect for business majors! 💼"
+```
 
-- Never commit your API token to version control
-- Use environment variables for production deployments
-- The token provided has access to your Canvas account - keep it secure
+### Assignment Tracking
+- View all Canvas assignments in a unified dashboard
+- Track submission status and due dates
+- Sync assignments to Google Calendar
+- Get notifications for upcoming deadlines
 
-## Dependencies
+## 🔧 Configuration
 
-- `axios` - HTTP client for API requests
-- `dotenv` - Environment variable management
+### Environment Variables
+- `GOOGLE_CLIENT_ID`: Google OAuth client ID
+- `GOOGLE_CLIENT_SECRET`: Google OAuth client secret
+- `GOOGLE_REDIRECT_URI`: OAuth callback URL
+- `SESSION_SECRET`: Session encryption key
+- `PORT`: Server port (default: 2025)
 
-## License
+### Canvas API Configuration
+The application automatically detects your Canvas domain and institution based on your login credentials.
 
-MIT 
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Canvas LMS API for educational data integration
+- Google Calendar API for calendar functionality
+- Font Awesome for icons
+- Express.js community for web framework
+
+## 📞 Support
+
+If you encounter any issues or have questions:
+
+1. Check the [SETUP.md](SETUP.md) for detailed setup instructions
+2. Review the existing issues on GitHub
+3. Create a new issue with detailed information about your problem
+
+---
+
+**Made with ❤️ for students everywhere** 
