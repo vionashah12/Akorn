@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akorn - Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .login-container {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            background: #e3f2fd;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            display: flex;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .login-header h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-group input, .form-group select {
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.2s ease;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .login-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .login-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .login-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .login-info {
+            background: #e8f4fd;
+            border: 1px solid #bee5eb;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .login-info i {
+            color: #17a2b8;
+            font-size: 18px;
+        }
+        
+        .login-info p {
+            margin: 0;
+            color: #0c5460;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .help-text {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .help-text a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .help-text a:hover {
+            text-decoration: underline;
+        }
+        
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #f5c6cb;
+            display: none;
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+        }
+
+        .help-text-small {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .help-text-small a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .help-text-small a:hover {
+            text-decoration: underline;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 80%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            top: 15px;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+        }
+
+        .token-help-steps {
+            margin: 20px 0;
+        }
+
+        .step {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .step h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .step p {
+            margin: 0;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .token-note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .token-note p {
+            margin: 0;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-header">
+                    <i class="fas fa-seedling"></i>
+                    <h1>Akorn Login</h1>
+                    <p>Connect your institution's LMS account</p>
+                </div>
+                
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="lms-select">LMS Provider</label>
+                        <select id="lms-select" class="form-control" required>
+                            <option value="">Select your LMS</option>
+                            <option value="canvas" selected>Canvas</option>
+                            <option value="blackboard">Blackboard</option>
+                            <option value="d2l">D2L Brightspace</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="domain">Institution Domain</label>
+                        <input type="text" id="domain" class="form-control" placeholder="yourschool.edu" value="canvas.instructure.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="access-token">Access Token</label>
+                        <input type="password" id="access-token" class="form-control" placeholder="Enter your access token" required>
+                        <small class="help-text">
+                            <a href="#" id="token-help-link">How to get your Ohio State Canvas access token?</a>
+                        </small>
+                        <small class="help-text-small">
+                            <a href="#" id="demo-mode-link">Try Demo Mode</a> (for testing without real credentials)
+                        </small>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        Connect
+                    </button>
+                </form>
+                
+                <div class="login-footer">
+                    <p>Having trouble? <a href="#" class="help-link">Help</a> / <a href="#" class="help-link">Contact IT</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Token Help Modal -->
+    <div id="token-help-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-question-circle"></i> How to Get Your Access Token</h3>
+                <span class="close" id="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="token-help-steps">
+                    <div class="step">
+                        <h4><i class="fas fa-palette"></i> Ohio State Canvas</h4>
+                        <ol>
+                            <li>Go to <a href="https://canvas.osu.edu" target="_blank">canvas.osu.edu</a> and log in</li>
+                            <li>Click on your profile picture in the top right</li>
+                            <li>Select <strong>Settings</strong> from the dropdown menu</li>
+                            <li>Scroll down to <strong>Approved Integrations</strong> section</li>
+                            <li>Click <strong>New Access Token</strong></li>
+                            <li>Enter a purpose like "Akorn"</li>
+                            <li>Set expiration to "Never" or choose a future date</li>
+                            <li>Click <strong>Generate Token</strong></li>
+                            <li><strong>Copy the token immediately</strong> (you won't see it again!)</li>
+                            <li>Paste it in the Access Token field above</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="step">
+                        <h4><i class="fas fa-chalkboard"></i> Blackboard</h4>
+                        <ol>
+                            <li>Log into your Blackboard account</li>
+                            <li>Go to <strong>Tools</strong> → <strong>Personal Information</strong></li>
+                            <li>Click <strong>Personal Settings</strong></li>
+                            <li>Select <strong>Developer Settings</strong></li>
+                            <li>Click <strong>Create Application</strong></li>
+                            <li>Fill in the required information</li>
+                            <li>Copy the <strong>Application Key</strong></li>
+                        </ol>
+                    </div>
+                    
+                    <div class="step">
+                        <h4><i class="fas fa-graduation-cap"></i> D2L Brightspace</h4>
+                        <ol>
+                            <li>Log into your D2L Brightspace account</li>
+                            <li>Go to <strong>Account Settings</strong></li>
+                            <li>Click <strong>API Access</strong></li>
+                            <li>Click <strong>Create New Token</strong></li>
+                            <li>Enter a name for your token</li>
+                            <li>Set permissions to <strong>Read Only</strong></li>
+                            <li>Click <strong>Generate Token</strong></li>
+                            <li>Copy the token immediately</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="token-note">
+                    <p><strong>Note:</strong> Keep your access token secure and don't share it with anyone. You can revoke it anytime from your LMS settings.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html> 

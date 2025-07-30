@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akorn - Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Dashboard Navigation -->
+        <div class="dashboard-nav">
+            <div class="dashboard-nav-tabs">
+                <button class="nav-logo" onclick="window.location.href='/profile'">
+                    <i class="fas fa-seedling"></i>
+                </button>
+                <button class="dashboard-nav-tab" onclick="window.location.href='/dashboard'">
+                    <i class="fas fa-book"></i> courses
+                </button>
+                <button class="dashboard-nav-tab" onclick="window.location.href='/dashboard#assignments'">
+                    <i class="fas fa-tasks"></i> assignments
+                </button>
+                <button class="dashboard-nav-tab" onclick="window.location.href='/dashboard#calendar'">
+                    <i class="fas fa-calendar-alt"></i> Calendar
+                </button>
+                <button class="dashboard-nav-tab" onclick="window.location.href='/syllabus'">
+                    <i class="fas fa-file-alt"></i> Syllabus
+                </button>
+                <button class="dashboard-nav-tab" onclick="window.location.href='/applications'">
+                    <i class="fas fa-rocket"></i> Applications
+                </button>
+                <button class="dashboard-nav-tab" onclick="window.location.href='/mascot'" id="mascot-nav-btn">
+                    <i class="fas fa-magic"></i> Schools Mascot AI
+                </button>
+            </div>
+            <div class="user-info">
+                <span id="user-name">Loading...</span>
+                <button id="logout-btn" class="btn btn-secondary">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+
+        <!-- Loading Screen -->
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Loading your profile...</p>
+        </div>
+
+        <!-- Main Content -->
+        <main id="main-content" class="main-content" style="display: none;">
+            <!-- Profile Content Area -->
+            <div class="dashboard-content-area">
+                <!-- Profile Header -->
+                <div class="profile-header" style="padding: 40px;">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="profile-title">
+                        <h2 id="profile-name">Loading...</h2>
+                        <p id="profile-email">Loading...</p>
+                    </div>
+                    <div class="profile-actions">
+                        <button id="edit-profile-btn" class="btn btn-primary">
+                            <i class="fas fa-edit"></i> Edit Profile
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Profile Information -->
+                <div class="profile-sections" style="padding: 0 40px;">
+                    <!-- Personal Information -->
+                    <section class="profile-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-user-circle"></i> Personal Information</h3>
+                        </div>
+                        <div class="section-content">
+                            <div id="personal-info">
+                                <!-- Personal info will be populated here -->
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Academic Information -->
+                    <section class="profile-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-graduation-cap"></i> Academic Information</h3>
+                        </div>
+                        <div class="section-content">
+                            <div id="academic-info">
+                                <!-- Academic info will be populated here -->
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Account Settings -->
+                    <section class="profile-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-cog"></i> Account Settings</h3>
+                        </div>
+                        <div class="section-content">
+                            <div class="settings-grid">
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h4>Canvas Integration</h4>
+                                        <p>Connected to Ohio State Canvas</p>
+                                    </div>
+                                    <div class="setting-status">
+                                        <span class="status-badge connected">Connected</span>
+                                    </div>
+                                </div>
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h4>Google Calendar</h4>
+                                        <p>Sync assignments to Google Calendar</p>
+                                    </div>
+                                    <div class="setting-status">
+                                        <span class="status-badge" id="google-calendar-status">Not Connected</span>
+                                    </div>
+                                </div>
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h4>Notifications</h4>
+                                        <p>Email and push notifications</p>
+                                    </div>
+                                    <div class="setting-status">
+                                        <span class="status-badge">Enabled</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="edit-profile-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-edit"></i> Edit Profile</h3>
+                <span class="close" id="close-edit-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="edit-profile-form">
+                    <div class="form-section">
+                        <h4><i class="fas fa-user-circle"></i> Personal Information</h4>
+                        <div class="form-group">
+                            <label for="edit-name">Full Name</label>
+                            <input type="text" id="edit-name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-email">Email</label>
+                            <input type="email" id="edit-email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-major">Major</label>
+                            <input type="text" id="edit-major" name="major">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-year">Year</label>
+                            <select id="edit-year" name="year">
+                                <option value="Freshman">Freshman</option>
+                                <option value="Sophomore">Sophomore</option>
+                                <option value="Junior">Junior</option>
+                                <option value="Senior">Senior</option>
+                                <option value="Graduate">Graduate</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h4><i class="fas fa-graduation-cap"></i> Academic Information</h4>
+                        <div class="form-group">
+                            <label for="edit-gpa">GPA</label>
+                            <input type="number" id="edit-gpa" name="gpa" step="0.01" min="0" max="4.0">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-institution">Institution</label>
+                            <input type="text" id="edit-institution" name="institution">
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" id="cancel-edit" class="btn btn-secondary">Cancel</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="profile.js"></script>
+</body>
+</html> 

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acorn - Syllabus Upload</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Dashboard Navigation -->
+        <div class="dashboard-nav">
+            <div class="dashboard-nav-tabs">
+                <button class="nav-logo" onclick="window.location.href='/profile'">
+                    <i class="fas fa-seedling"></i>
+                </button>
+                <button class="dashboard-nav-tab" onclick="window.location.href='/dashboard'">
+                    <i class="fas fa-book"></i> courses
+                </button>
+                <button class="dashboard-nav-tab" onclick="window.location.href='/dashboard#assignments'">
+                    <i class="fas fa-tasks"></i> assignments
+                </button>
+                <button class="dashboard-nav-tab" onclick="window.location.href='/dashboard#calendar'">
+                    <i class="fas fa-calendar-alt"></i> Calendar
+                </button>
+                <button class="dashboard-nav-tab active">
+                    <i class="fas fa-file-alt"></i> Syllabus
+                </button>
+                <button class="dashboard-nav-tab" onclick="window.location.href='/applications'">
+                    <i class="fas fa-rocket"></i> Applications
+                </button>
+                <button class="dashboard-nav-tab" onclick="window.location.href='/mascot'" id="mascot-nav-btn">
+                    <i class="fas fa-magic"></i> Schools Mascot AI
+                </button>
+            </div>
+            <div class="user-info" style="margin-left: auto; padding: 10px 0;">
+                <span id="user-name">Loading...</span>
+                <button id="logout-btn" class="btn btn-secondary">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+
+        <!-- Loading Screen -->
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Loading syllabus upload...</p>
+        </div>
+
+        <!-- Main Content -->
+        <main id="main-content" class="main-content" style="display: none;">
+            <!-- Syllabus Content Area -->
+            <div class="dashboard-content-area">
+                <!-- Syllabus Header -->
+                <div class="syllabus-header">
+                                    <div class="syllabus-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                    <div class="syllabus-title">
+                        <h2>Acorn Syllabus Analysis</h2>
+                        <p>Upload your course syllabus and let AI extract assignments automatically</p>
+                    </div>
+                </div>
+
+                <!-- Syllabus Upload Section -->
+                <div class="syllabus-sections">
+                    <!-- Features Section -->
+                    <section class="syllabus-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-lightbulb"></i> How It Works</h3>
+                        </div>
+                        <div class="section-content">
+                            <div class="features-grid">
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Extract Assignment Names</h4>
+                                        <p>AI scans your syllabus to identify all assignments, projects, and exams</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Find Due Dates</h4>
+                                        <p>Automatically extracts due dates and schedules them in your tracker</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Identify Point Values</h4>
+                                        <p>Recognizes assignment weights and point values for priority analysis</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-plus-circle"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Add to Tracker</h4>
+                                        <p>Seamlessly integrates extracted assignments into your dashboard</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Upload Section -->
+                    <section class="syllabus-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-cloud-upload-alt"></i> Upload Your Syllabus</h3>
+                        </div>
+                        <div class="section-content">
+                            <div class="upload-area-container">
+                                <div class="upload-zone" id="upload-zone">
+                                    <div class="upload-icon">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                    </div>
+                                    <h3>Drag & Drop Your Syllabus</h3>
+                                    <p>or click to browse files</p>
+                                    <div class="supported-formats">
+                                        <span>Supported formats: PDF, DOCX, TXT</span>
+                                    </div>
+                                    <input type="file" id="syllabus-file" accept=".pdf,.doc,.docx,.txt" style="display: none;">
+                                </div>
+                                
+                                <div class="upload-progress" id="upload-progress" style="display: none;">
+                                    <div class="progress-container">
+                                        <div class="progress-bar">
+                                            <div class="progress-fill"></div>
+                                        </div>
+                                        <p id="upload-status">Processing syllabus with AI...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Instructions Section -->
+                    <section class="syllabus-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-info-circle"></i> Getting Started</h3>
+                        </div>
+                        <div class="section-content">
+                            <div class="instructions-grid">
+                                <div class="instruction-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>Prepare Your Syllabus</h4>
+                                        <p>Make sure your syllabus is in PDF, DOCX, or TXT format. The clearer the formatting, the better the AI extraction.</p>
+                                    </div>
+                                </div>
+                                <div class="instruction-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>Upload the File</h4>
+                                        <p>Drag and drop your syllabus file into the upload area above, or click to browse and select your file.</p>
+                                    </div>
+                                </div>
+                                <div class="instruction-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>AI Analysis</h4>
+                                        <p>Our AI will analyze your syllabus and extract assignment information, including names, due dates, and point values.</p>
+                                    </div>
+                                </div>
+                                <div class="instruction-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>Review & Confirm</h4>
+                                        <p>Review the extracted assignments and confirm to add them to your assignment tracker.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="syllabus.js"></script>
+</body>
+</html> 

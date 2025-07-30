@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akorn - Schools Mascot AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Dashboard Navigation -->
+        <div class="dashboard-nav">
+            <div class="dashboard-nav-tabs">
+                <button class="nav-logo" onclick="window.location.href='/profile'">
+                    <i class="fas fa-seedling"></i>
+                </button>
+                <button class="dashboard-nav-tab" onclick="window.location.href='/dashboard'">
+                    <i class="fas fa-book"></i> courses
+                </button>
+                <button class="dashboard-nav-tab" onclick="window.location.href='/dashboard'">
+                    <i class="fas fa-tasks"></i> assignments
+                </button>
+                <button class="dashboard-nav-tab" onclick="window.location.href='/dashboard'">
+                    <i class="fas fa-calendar-alt"></i> Calendar
+                </button>
+                <button class="dashboard-nav-tab" onclick="window.location.href='/syllabus'">
+                    <i class="fas fa-file-alt"></i> Syllabus
+                </button>
+                <button class="dashboard-nav-tab" onclick="window.location.href='/applications'">
+                    <i class="fas fa-rocket"></i> Applications
+                </button>
+                <button class="dashboard-nav-tab active" id="mascot-nav-btn">
+                    <i class="fas fa-magic"></i> Schools Mascot AI
+                </button>
+            </div>
+            <div class="user-info">
+                <span id="user-name">Loading...</span>
+                <button id="logout-btn" class="btn btn-secondary">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+
+        <!-- Loading Screen -->
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Loading your school mascot AI...</p>
+        </div>
+
+        <!-- Main Content -->
+        <main id="main-content" class="main-content" style="display: none;">
+            <!-- Dashboard Content Area -->
+            <div class="dashboard-content-area">
+                <!-- AI Chatbot Header -->
+                <div class="mascot-header">
+                    <div class="mascot-icon">
+                        <i id="mascot-header-icon" class="fas fa-magic"></i>
+                    </div>
+                    <div class="mascot-title">
+                        <h2 id="mascot-page-title">Schools Mascot AI</h2>
+                        <p>Chat with your school's AI mascot assistant</p>
+                    </div>
+                </div>
+
+                <!-- AI Chatbot Interface -->
+                <div class="mascot-sections">
+                    <div class="mascot-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-comments"></i> AI Chat Assistant</h3>
+                            <p class="chat-subtitle">Chat with your school mascot for academic help and support</p>
+                        </div>
+                        <div class="section-content">
+                            <!-- Chat Container -->
+                            <div class="chat-container">
+                                <div class="chat-messages" id="chat-messages">
+                                    <!-- Messages will be added here dynamically -->
+                                </div>
+                                <div class="chat-input-container">
+                                    <div class="chat-input-wrapper">
+                                        <input type="text" id="chat-input" placeholder="Ask your school mascot anything..." class="chat-input">
+                                        <button id="send-message-btn" class="send-message-btn">
+                                            <i class="fas fa-paper-plane"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- School Info Section -->
+                    <div class="mascot-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-university"></i> Your School</h3>
+                        </div>
+                        <div class="section-content">
+                            <div class="school-info">
+                                <div class="school-details">
+                                    <h4>Detected School</h4>
+                                    <p id="school-name">Analyzing your Canvas data...</p>
+                                </div>
+                                <div class="school-details">
+                                    <h4>AI Assistant</h4>
+                                    <p id="ai-assistant-name">Loading...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="mascot.js"></script>
+</body>
+</html> 

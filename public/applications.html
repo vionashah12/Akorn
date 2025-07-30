@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akorn - Applications</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Dashboard Navigation -->
+        <div class="dashboard-nav">
+            <div class="dashboard-nav-tabs">
+                <button class="nav-logo" onclick="window.location.href='/profile'">
+                    <i class="fas fa-seedling"></i>
+                </button>
+                <button class="dashboard-nav-tab" onclick="window.location.href='/dashboard'">
+                    <i class="fas fa-book"></i> courses
+                </button>
+                <button class="dashboard-nav-tab" onclick="window.location.href='/dashboard#assignments'">
+                    <i class="fas fa-tasks"></i> assignments
+                </button>
+                <button class="dashboard-nav-tab" onclick="window.location.href='/dashboard#calendar'">
+                    <i class="fas fa-calendar-alt"></i> Calendar
+                </button>
+                <button class="dashboard-nav-tab" onclick="window.location.href='/syllabus'">
+                    <i class="fas fa-file-alt"></i> Syllabus
+                </button>
+                <button class="dashboard-nav-tab active">
+                    <i class="fas fa-rocket"></i> Applications
+                </button>
+                <button class="dashboard-nav-tab" onclick="window.location.href='/mascot'" id="mascot-nav-btn">
+                    <i class="fas fa-magic"></i> Schools Mascot AI
+                </button>
+            </div>
+            <div class="user-info">
+                <span id="user-name">Loading...</span>
+                <button id="logout-btn" class="btn btn-secondary">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="dashboard-content-area">
+                <!-- Applications Header -->
+                <div class="applications-header" style="padding: 40px;">
+                    <div class="applications-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="applications-title">
+                        <h2>Applications</h2>
+                        <p>Track your academic applications and deadlines</p>
+                    </div>
+                </div>
+
+                <!-- Applications Sections -->
+                <div class="applications-sections" style="padding: 0 40px;">
+                    <!-- Application Status Overview -->
+                    <div class="applications-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-chart-line"></i> Application Overview</h3>
+                        </div>
+                        <div class="section-content">
+                            <div class="status-overview">
+                                <div class="status-card">
+                                    <div class="status-icon pending">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div class="status-info">
+                                        <h4>Pending</h4>
+                                        <p class="status-count">3 Applications</p>
+                                    </div>
+                                </div>
+                                <div class="status-card">
+                                    <div class="status-icon submitted">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </div>
+                                    <div class="status-info">
+                                        <h4>Submitted</h4>
+                                        <p class="status-count">5 Applications</p>
+                                    </div>
+                                </div>
+                                <div class="status-card">
+                                    <div class="status-icon accepted">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="status-info">
+                                        <h4>Accepted</h4>
+                                        <p class="status-count">2 Applications</p>
+                                    </div>
+                                </div>
+                                <div class="status-card">
+                                    <div class="status-icon rejected">
+                                        <i class="fas fa-times-circle"></i>
+                                    </div>
+                                    <div class="status-info">
+                                        <h4>Rejected</h4>
+                                        <p class="status-count">1 Application</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add New Application -->
+                    <div class="applications-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-plus-circle"></i> Add New Application</h3>
+                        </div>
+                        <div class="section-content">
+                            <form id="application-form" class="application-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="program-name">Program Name</label>
+                                        <input type="text" id="program-name" placeholder="e.g., Computer Science Master's" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="institution">Institution</label>
+                                        <input type="text" id="institution" placeholder="e.g., Stanford University" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="application-type">Application Type</label>
+                                        <select id="application-type" required>
+                                            <option value="">Select type</option>
+                                            <option value="graduate">Graduate School</option>
+                                            <option value="undergraduate">Undergraduate</option>
+                                            <option value="internship">Internship</option>
+                                            <option value="scholarship">Scholarship</option>
+                                            <option value="research">Research Position</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="deadline">Application Deadline</label>
+                                        <input type="date" id="deadline" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="status">Current Status</label>
+                                        <select id="status" required>
+                                            <option value="planning">Planning</option>
+                                            <option value="in-progress">In Progress</option>
+                                            <option value="submitted">Submitted</option>
+                                            <option value="under-review">Under Review</option>
+                                            <option value="accepted">Accepted</option>
+                                            <option value="rejected">Rejected</option>
+                                            <option value="waitlisted">Waitlisted</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="priority">Priority Level</label>
+                                        <select id="priority" required>
+                                            <option value="high">High</option>
+                                            <option value="medium">Medium</option>
+                                            <option value="low">Low</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="notes">Notes</label>
+                                    <textarea id="notes" placeholder="Add any additional notes, requirements, or reminders..." rows="3"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-plus"></i> Add Application
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Applications List -->
+                    <div class="applications-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-list"></i> My Applications</h3>
+                            <div class="section-actions">
+                                <button class="btn btn-secondary" onclick="filterApplications('all')">
+                                    <i class="fas fa-filter"></i> All
+                                </button>
+                                <button class="btn btn-secondary" onclick="filterApplications('pending')">
+                                    <i class="fas fa-clock"></i> Pending
+                                </button>
+                                <button class="btn btn-secondary" onclick="filterApplications('submitted')">
+                                    <i class="fas fa-paper-plane"></i> Submitted
+                                </button>
+                            </div>
+                        </div>
+                        <div class="section-content">
+                            <div id="applications-list" class="applications-list">
+                                <!-- Applications will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Application Timeline -->
+                    <div class="applications-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-calendar-alt"></i> Upcoming Deadlines</h3>
+                        </div>
+                        <div class="section-content">
+                            <div id="deadlines-timeline" class="deadlines-timeline">
+                                <!-- Deadlines will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="applications.js"></script>
+</body>
+</html> 

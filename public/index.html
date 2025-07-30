@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Tracker - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-graduation-cap"></i> Canvas Tracker</h1>
+                <p>Your academic dashboard</p>
+            </div>
+        </header>
+
+        <!-- Loading Screen -->
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Loading your Canvas data...</p>
+        </div>
+
+        <!-- Main Content -->
+        <main id="main-content" class="main-content" style="display: none;">
+            <!-- User Profile Section -->
+            <section id="user-profile" class="card profile-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-user"></i> Profile</h2>
+                </div>
+                <div class="card-content">
+                    <div id="profile-info">
+                        <!-- Profile info will be populated here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Courses Section -->
+            <section id="courses-section" class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-book"></i> My Courses</h2>
+                    <div class="card-actions">
+                        <button id="refresh-courses" class="btn btn-secondary">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div id="courses-grid" class="courses-grid">
+                        <!-- Courses will be populated here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Assignments Section -->
+            <section id="assignments-section" class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-tasks"></i> Assignments</h2>
+                    <div class="card-actions">
+                        <select id="course-filter" class="select">
+                            <option value="">All Courses</option>
+                        </select>
+                        <button id="refresh-assignments" class="btn btn-secondary">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div id="assignments-list" class="assignments-list">
+                        <!-- Assignments will be populated here -->
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Error Modal -->
+        <div id="error-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Error</h3>
+                    <button class="close-btn" onclick="closeErrorModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p id="error-message"></p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" onclick="closeErrorModal()">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html> 
