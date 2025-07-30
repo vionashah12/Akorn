@@ -1,4 +1,4 @@
-# 🎓 Canvas Tracker - AI-Powered Academic Assistant
+# 🎓 Akorn - Canvas Tracker - AI-Powered Academic Assistant
 
 A modern web application that integrates with Canvas LMS to provide students with assignment tracking, calendar integration, and an AI-powered chat assistant featuring school-specific mascots.
 
@@ -38,8 +38,8 @@ A modern web application that integrates with Canvas LMS to provide students wit
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/canvas-tracker.git
-   cd canvas-tracker
+   git clone https://github.com/vionashah12/Akorn.git
+   cd Akorn
    ```
 
 2. **Install dependencies**
@@ -102,7 +102,7 @@ The AI assistant automatically detects and adapts to your institution:
 ## 📁 Project Structure
 
 ```
-canvas-tracker/
+Akorn/
 ├── public/                 # Frontend files
 │   ├── dashboard.html     # Main dashboard
 │   ├── profile.html       # User profile page
@@ -178,4 +178,4 @@ If you encounter any issues or have questions:
 
 ---
 
-**Made with ❤️ for students everywhere** 
+**Made with ❤️ for students everywhere**
