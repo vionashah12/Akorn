@@ -4,8 +4,8 @@
   "description": "A tool to interact with Canvas API for tracking assignments and courses",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "node --watch index.js",
+    "start": "node server.js",
+    "dev": "node --watch server.js",
     "web": "node server.js",
     "web:dev": "nodemon server.js"
   },
